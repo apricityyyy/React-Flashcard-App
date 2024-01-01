@@ -1,0 +1,40 @@
+/*Overall*/
+body {
+    background-color: #f0f2f5;
+    color: #4a4a4a;
+}
+
+h1, h2, h3 {
+    text-align: center;
+}
+
+/*Projects*/
+.projects {
+    margin: 30px;
+    display: flex;
+    gap: 30px;
+    justify-content: space-around;
+}
+
+#project {
+    background-color: #7cabe1;
+    width: 300px;
+    height: auto;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    transition: transform 0.3s ease; 
+    cursor: pointer; 
+}
+
+#project:hover {
+    background-color: #7ed321;
+    transform: scale(1.1);
+    box-shadow: 0px 0px 10px #666;
+}
+
+#project h3, #project p, #project a {
+    margin: 5px 0;
+}
