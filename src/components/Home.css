@@ -4,29 +4,35 @@ body {
     color: #4a4a4a;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
     text-align: center;
+}
+
+.home-container {
+    margin-top: 150px;
 }
 
 /*Projects*/
 .projects {
-    margin: 30px;
+    margin: 50px;
     display: flex;
     gap: 30px;
     justify-content: space-around;
+    flex-wrap: wrap;
 }
 
 #project {
     background-color: #7cabe1;
-    width: 300px;
-    height: auto;
+    width: 400px;
     padding: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     text-align: center;
-    transition: transform 0.3s ease; 
-    cursor: pointer; 
+    transition: transform 0.3s ease;
+    cursor: pointer;
 }
 
 #project:hover {
@@ -35,6 +41,25 @@ h1, h2, h3 {
     box-shadow: 0px 0px 10px #666;
 }
 
-#project h3, #project p, #project a {
-    margin: 5px 0;
+#project h3,
+#project p,
+#project a {
+    margin: 10px 0;
+}
+
+.projects ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.projects li {
+    margin-bottom: 10px;
+}
+
+.projects a {
+    text-decoration: none;
+}
+
+.projects a:hover {
+    text-decoration: underline;
 }

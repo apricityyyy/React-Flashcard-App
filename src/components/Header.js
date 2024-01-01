@@ -9,8 +9,8 @@ export default function Header() {
         <h1>Flash Card App</h1>
         <nav className="main-nav">
           <ul>
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/flashcards">Flash Cards</Link></li>
+            <li><Link to="/home">Home</Link></li>
+            <li><Link to="/cards">Flash Cards</Link></li>
             <li><Link to="/contact">Contact Me</Link></li>
           </ul>
         </nav>

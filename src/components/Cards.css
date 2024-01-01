@@ -1,0 +1,28 @@
+/*Overall*/
+.flashcard-list {
+    margin-top: 150px;
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+/*Flash Card*/
+.flashcard {
+    background-color: #D6EAF8;
+    width: 300px;
+    height: auto;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.flashcard img {
+    width: 200px;
+    height: auto;
+    object-fit: contain;
+}

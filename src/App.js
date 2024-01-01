@@ -1,11 +1,19 @@
 import React from 'react';
-import Home from './Home';
+import Home from './components/Home';
+import Cards from './components/Cards'
+import NoMatchRoute from './components/NoMatchRoute';
+import { Route, Routes } from 'react-router-dom'
 
 function App() {
   return (
     <div className="App">
-      <Home />
-    </div>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/home" element={<Home />} />
+      <Route path="/cards" element={<Cards />} />
+      <Route path="/*" element={<NoMatchRoute />} />
+    </Routes>
+  </div>
   );
 }
 

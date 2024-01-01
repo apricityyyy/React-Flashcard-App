@@ -1,0 +1,134 @@
+{
+    "flashCards": [
+      {
+        "id": 1,
+        "front": {
+          "type": "text",
+          "content": "What is the capital of France?"
+        },
+        "back": {
+          "type": "text",
+          "content": "Paris"
+        },
+        "lastModified": "2023-12-19T12:00:00Z",
+        "status": "Want to Learn"
+      },
+      {
+        "id": 2,
+        "front": {
+          "type": "image",
+          "url": "image1.jpeg"
+        },
+        "back": {
+          "type": "text",
+          "content": "This is an image of the Maiden Tower in Baku."
+        },
+        "lastModified": "2023-12-18T15:30:00Z",
+        "status": "Learned"
+      },
+      {
+        "id": 3,
+        "front": {
+          "type": "question",
+          "content": "Explain the theory of relativity."
+        },
+        "back": {
+          "type": "text",
+          "content": "The theory of relativity, proposed by Einstein, explains the laws of gravity and the relationship between space and time."
+        },
+        "lastModified": "2023-12-20T09:00:00Z",
+        "status": "Noted"
+      },
+      {
+        "id": 4,
+        "front": {
+          "type": "text",
+          "content": "What is the formula for water?"
+        },
+        "back": {
+          "type": "text",
+          "content": "H2O"
+        },
+        "lastModified": "2023-12-17T10:20:00Z",
+        "status": "Learned"
+      },
+      {
+        "id": 5,
+        "front": {
+          "type": "image",
+          "url": "image2.webp"
+        },
+        "back": {
+          "type": "text",
+          "content": "A diagram of the human circulatory system."
+        },
+        "lastModified": "2023-12-18T08:45:00Z",
+        "status": "Want to Learn"
+      },
+      {
+        "id": 6,
+        "front": {
+          "type": "text",
+          "content": "Name the largest planet in our solar system."
+        },
+        "back": {
+          "type": "text",
+          "content": "Jupiter"
+        },
+        "lastModified": "2023-12-19T14:10:00Z",
+        "status": "Noted"
+      },
+      {
+        "id": 7,
+        "front": {
+          "type": "question",
+          "content": "Who wrote 'To Kill a Mockingbird'?"
+        },
+        "back": {
+          "type": "text",
+          "content": "Harper Lee"
+        },
+        "lastModified": "2023-12-16T11:00:00Z",
+        "status": "Learned"
+      },
+      {
+        "id": 8,
+        "front": {
+          "type": "text",
+          "content": "What is the main ingredient in sushi?"
+        },
+        "back": {
+          "type": "text",
+          "content": "Rice"
+        },
+        "lastModified": "2023-12-15T13:35:00Z",
+        "status": "Want to Learn"
+      },
+      {
+        "id": 9,
+        "front": {
+          "type": "image",
+          "url": "image3.webp"
+        },
+        "back": {
+          "type": "text",
+          "content": "Image of the Great Barrier Reef in Australia."
+        },
+        "lastModified": "2023-12-14T09:50:00Z",
+        "status": "Noted"
+      },
+      {
+        "id": 10,
+        "front": {
+          "type": "question",
+          "content": "What year did the first man land on the moon?"
+        },
+        "back": {
+          "type": "text",
+          "content": "1969"
+        },
+        "lastModified": "2023-12-13T16:05:00Z",
+        "status": "Learned"
+      }
+    ]
+  }
