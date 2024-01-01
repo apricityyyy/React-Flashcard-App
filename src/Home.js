@@ -1,11 +1,14 @@
 import React from 'react';
 import Project from './Project';
 import './Home.css'
+import Footer from './Footer'
+import Header from './Header'
 
 export default function Home() {
   return (
     <div className="home-container">
-      <h1>Welcome to My Portfolio</h1>
+      <Header />
+
       <h2>This is a collection of the projects I have done so far.</h2>
 
       <div className="projects">
@@ -33,6 +36,9 @@ export default function Home() {
         <Project name="Either AI or Back-end" date=""
           description=""
           links={{ "": "" }} />
+
+
+        <Footer />
       </div>
     </div>
   );
