@@ -10,12 +10,12 @@ function Flashcard({ card/*, onEdit, onDelete*/ }) {
             return (
                 <h3>{cardSide.content}</h3>
             )
-        } else if (cardSide.url) {
+        } else if (cardSide.content) {
             try {
                 return (
                     <>
                         <h3>What does below image indicate?</h3>
-                        <img src={card.front.url.includes('http') ? card.front.url : require(`../assets/images/${card.front.url}`)} alt={card.id} />
+                        <img src={cardSide.content.includes('http') ? cardSide.content : require(`../assets/images/${cardSide.content}`)} alt={card.id} />
                     </>
                 )
             } catch {

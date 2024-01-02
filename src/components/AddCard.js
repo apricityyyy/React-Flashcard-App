@@ -4,44 +4,39 @@ export default function AddCard({ onAddCard, editingCard }) {
     const [frontType, setFrontType] = useState(editingCard?.front.type || 'text');
     const [frontContent, setFrontContent] = useState(editingCard?.front.content || '');
     const [backContent, setBackContent] = useState(editingCard?.back.content || '');
-    const [imageFile, setImageFile] = useState(null);
+    const [file, setFile] = useState('');
     const [status, setStatus] = useState(editingCard?.status || 'Noted');
 
     const handleSubmit = () => {
+        setFrontContent(file)
+
         const newCard = {
             front: {
-                type: frontType,
-                content: frontType === 'text' ? frontContent : undefined,
-                url: frontType === 'image' ? imageFile.name : undefined
+                type: frontType === 'text' ? (frontContent.endsWith('?') ? 'question' : 'text') : 'image',
+                content: frontType === 'image' ? file : frontContent
             },
             back: {
-                type: "text", // Assuming the back is always text
+                type: "text", 
                 content: backContent
             },
             lastModified: new Date().toISOString(),
             status: status
         };
 
-        if (frontType === 'image') {
-            const formData = new FormData();
-            formData.append('image', imageFile);
-            // Add other card details as JSON string
-            formData.append('cardData', JSON.stringify(newCard));
-            onAddCard(formData, true); // Indicate that this is a FormData submission
-        } else {
-            onAddCard(newCard, false); // Regular JSON submission
-        }
+        onAddCard(newCard)
 
         // Reset fields
         setFrontContent('');
         setBackContent('');
-        setImageFile(null);
+        setFile('');
         setStatus('Noted');
     };
 
-    const handleFileChange = (e) => {
-        setImageFile(e.target.files[0]);
-    };
+    function handleChange(e) {
+        console.log(e.target.files);
+        setFile(URL.createObjectURL(e.target.files[0]));
+        console.log(file)
+    }
 
     return (
         <>
@@ -76,7 +71,7 @@ export default function AddCard({ onAddCard, editingCard }) {
                 <input
                     type="file"
                     accept="image/*"
-                    onChange={handleFileChange}
+                    onChange={handleChange}
                 />
             )}
 

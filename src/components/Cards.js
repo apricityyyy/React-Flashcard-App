@@ -71,12 +71,14 @@ function Cards() {
         setEditingCard(null);
     };
 
-    function handleAddCard(cardData, isFormData) {
+    function handleAddCard(cardData) {
+        cardData.id = nextId++;
+
         // Prepare the requestOptions
         const requestOptions = {
             method: 'POST',
-            headers: isFormData ? {} : { 'Content-Type': 'application/json' },
-            body: isFormData ? cardData : JSON.stringify(cardData)
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(cardData)
         };
     
         // Make the fetch request to add the card
@@ -84,7 +86,6 @@ function Cards() {
             .then(response => response.json())
             .then(data => {
                 if (data) {
-                    // Assuming 'data' contains the added card; update the state
                     dispatch({ type: 'added', card: data });
                 }
             })
