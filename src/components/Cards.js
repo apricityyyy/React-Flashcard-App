@@ -93,14 +93,14 @@ function Cards() {
             console.error('Error: Card must have an ID to be edited');
             return;
         }
-    
+
         // Prepare the requestOptions
         const requestOptions = {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(cardData)
         };
-    
+
         // Make the fetch request to update the card
         fetch(`http://localhost:5000/flashCards/${cardData.id}`, requestOptions)
             .then(response => response.json())
@@ -114,10 +114,29 @@ function Cards() {
     }
 
     function handleDeleteCard(cardId) {
-        dispatch({
-            type: 'deleted',
-            id: cardId
-        });
+        // Check if cardId is provided
+        if (!cardId) {
+            console.error('Error: Card must have an ID to be deleted');
+            return;
+        }
+
+        // Prepare the requestOptions
+        const requestOptions = {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' }
+        };
+
+        // Make the fetch request to delete the card
+        fetch(`http://localhost:5000/flashCards/${cardId}`, requestOptions)
+            .then(response => {
+                if (response.ok) {
+                    // Update the local state if the server successfully processed the deletion
+                    dispatch({ type: 'deleted', id: cardId });
+                } else {
+                    console.error('Server error during card deletion');
+                }
+            })
+            .catch(error => console.error('Error deleting card:', error));
     }
 
     return (
@@ -126,7 +145,7 @@ function Cards() {
 
             <div className="flashcard-list">
                 {cards.map(card => (
-                    <Flashcard key={card.id} card={card} onEdit={() => handleOpenPopUp(card)} /*onDelete={handleDeleteCard}*/ />
+                    <Flashcard key={card.id} card={card} onEdit={() => handleOpenPopUp(card)} onDelete={handleDeleteCard} />
                 ))}
             </div>
 
@@ -136,7 +155,7 @@ function Cards() {
                 </div>
 
                 <PopUp isOpen={isPopUpOpen} onClose={handleClosePopUp}>
-                    <AddCard onAddCard={handleAddCard} editingCard={editingCard} onEditCard={handleEditCard} onClose={handleClosePopUp}/>
+                    <AddCard onAddCard={handleAddCard} onEditCard={handleEditCard} editingCard={editingCard} onClose={handleClosePopUp} />
                 </PopUp>
             </div>
 

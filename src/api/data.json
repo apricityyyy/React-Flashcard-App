@@ -146,13 +146,13 @@
     {
       "front": {
         "type": "image",
-        "content": "blob:http://localhost:3000/09f607d9-f9b1-48ef-9874-b0b2304aed1f"
+        "content": "blob:http://localhost:3000/09370d54-20a9-4cad-ae65-76baa16f693f"
       },
       "back": {
         "type": "text",
         "content": "Art Gallery"
       },
-      "lastModified": "2024-01-02T19:33:29.386Z",
+      "lastModified": "2024-01-02T21:32:35.381Z",
       "status": "Want to Learn",
       "id": 12
     },

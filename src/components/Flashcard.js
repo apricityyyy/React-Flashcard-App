@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function Flashcard({ card, onEdit, /*onDelete*/ }) {
+function Flashcard({ card, onEdit, onDelete }) {
     const [isFlipped, setIsFlipped] = useState(false);
 
     const flipCard = () => setIsFlipped(!isFlipped);
@@ -47,8 +47,10 @@ function Flashcard({ card, onEdit, /*onDelete*/ }) {
                 </div>
             </div>
 
-            <button className='flashcard-inner-button' onClick={(e) => { e.stopPropagation(); onEdit(card) }}>Edit</button>
-            {/* <button onClick={() => onDelete(card.id)}>Delete</button>  */}
+            <div className='flashcard-buttons'>
+                <button className='flashcard-inner-button' onClick={(e) => { e.stopPropagation(); onEdit(card) }}>Edit</button>
+                <button className='flashcard-inner-button' onClick={(e) => { e.stopPropagation(); onDelete(card.id) }}>Delete</button>
+            </div>
         </div >
     );
 }

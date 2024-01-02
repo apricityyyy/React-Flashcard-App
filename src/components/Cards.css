@@ -80,6 +80,11 @@
     margin-top: 10px;
 }
 
+.flashcard-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
 /*Add/Edit Card*/
 .button-container {
     display: flex;
