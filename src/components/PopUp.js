@@ -7,8 +7,14 @@ function PopUp({ isOpen, onClose, children }) {
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={e => e.stopPropagation()}>
-        {children}
-        <button onClick={onClose}>Close</button>
+        <div className="modal-header">
+          <button className="close-button" onClick={onClose}>
+            &times; {/* Close symbol */}
+          </button>
+        </div>
+        <div className="modal-body">
+          {children}
+        </div>
       </div>
     </div>
   );

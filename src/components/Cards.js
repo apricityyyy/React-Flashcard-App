@@ -13,7 +13,6 @@ function cardsReducer(cards, action) {
         }
         case 'added': {
             return [...cards, {
-                id: action.card.id,
                 front: {
                     type: action.card.front.type,
                     content: action.card.front.content
@@ -27,11 +26,11 @@ function cardsReducer(cards, action) {
             }];
         }
         case 'edited': {
-            return cards.map(t => {
-                if (t.id === action.card.id) {
+            return cards.map(c => {
+                if (c.id === action.card.id) {
                     return action.card;
                 } else {
-                    return t;
+                    return c;
                 }
             });
         }
@@ -43,8 +42,6 @@ function cardsReducer(cards, action) {
         }
     }
 }
-
-let nextId = 11;
 
 function Cards() {
     /*Get Cards*/
@@ -72,15 +69,13 @@ function Cards() {
     };
 
     function handleAddCard(cardData) {
-        cardData.id = nextId++;
-
         // Prepare the requestOptions
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(cardData)
         };
-    
+
         // Make the fetch request to add the card
         fetch('http://localhost:5000/flashCards', requestOptions)
             .then(response => response.json())
@@ -90,13 +85,32 @@ function Cards() {
                 }
             })
             .catch(error => console.error('Error adding card:', error));
-    }    
+    }
 
-    function handleEditCard(card) {
-        dispatch({
-            type: 'edited',
-            card: card
-        });
+    function handleEditCard(cardData) {
+        // Check if cardData has an id
+        if (!cardData.id) {
+            console.error('Error: Card must have an ID to be edited');
+            return;
+        }
+    
+        // Prepare the requestOptions
+        const requestOptions = {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(cardData)
+        };
+    
+        // Make the fetch request to update the card
+        fetch(`http://localhost:5000/flashCards/${cardData.id}`, requestOptions)
+            .then(response => response.json())
+            .then(updatedCard => {
+                if (updatedCard) {
+                    // Assuming 'updatedCard' contains the updated card data
+                    dispatch({ type: 'edited', card: updatedCard });
+                }
+            })
+            .catch(error => console.error('Error editing card:', error));
     }
 
     function handleDeleteCard(cardId) {
@@ -112,14 +126,17 @@ function Cards() {
 
             <div className="flashcard-list">
                 {cards.map(card => (
-                    <Flashcard key={card.id} card={card} /*onEdit={() => handleOpenPopUp(card)} onDelete={handleDeleteCard}*/ />
+                    <Flashcard key={card.id} card={card} onEdit={() => handleOpenPopUp(card)} /*onDelete={handleDeleteCard}*/ />
                 ))}
             </div>
 
             <div className='add-or-edit-card'>
-                <button onClick={() => handleOpenPopUp()}>Add New Card</button>
+                <div className='button-container'>
+                    <button onClick={() => handleOpenPopUp()}><b>Add New Card</b></button>
+                </div>
+
                 <PopUp isOpen={isPopUpOpen} onClose={handleClosePopUp}>
-                    <AddCard onAddCard={handleAddCard} editingCard={editingCard} />
+                    <AddCard onAddCard={handleAddCard} editingCard={editingCard} onEditCard={handleEditCard} onClose={handleClosePopUp}/>
                 </PopUp>
             </div>
 

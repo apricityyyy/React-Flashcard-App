@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function Flashcard({ card/*, onEdit, onDelete*/ }) {
+function Flashcard({ card, onEdit, /*onDelete*/ }) {
     const [isFlipped, setIsFlipped] = useState(false);
 
     const flipCard = () => setIsFlipped(!isFlipped);
@@ -29,7 +29,7 @@ function Flashcard({ card/*, onEdit, onDelete*/ }) {
     function formatDateTime(isoString) {
         const date = new Date(isoString);
         return date.toLocaleString(); // Converts to a string using the local timezone
-    }    
+    }
 
     return (
         <div className={`flashcard ${isFlipped ? 'flipped' : ''}`} onClick={flipCard}>
@@ -47,8 +47,8 @@ function Flashcard({ card/*, onEdit, onDelete*/ }) {
                 </div>
             </div>
 
-            {/* <button onClick={() => onEdit(card)}>Edit</button>
-            <button onClick={() => onDelete(card.id)}>Delete</button> */}
+            <button className='flashcard-inner-button' onClick={(e) => { e.stopPropagation(); onEdit(card) }}>Edit</button>
+            {/* <button onClick={() => onDelete(card.id)}>Delete</button>  */}
         </div >
     );
 }

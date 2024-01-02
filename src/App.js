@@ -1,8 +1,9 @@
-import React from 'react';
-import Home from './components/Home';
+import React from 'react'
+import Home from './components/Home'
 import Cards from './components/Cards'
-import NoMatchRoute from './components/NoMatchRoute';
+import NoMatchRoute from './components/NoMatchRoute'
 import { Route, Routes } from 'react-router-dom'
+import "./App.css"
 
 function App() {
   return (

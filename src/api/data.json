@@ -1,20 +1,19 @@
 {
   "flashCards": [
     {
-      "id": 1,
       "front": {
-        "type": "text",
-        "content": "What is the capital of France?"
+        "type": "question",
+        "content": "What is the capital of Azerbaijan?"
       },
       "back": {
         "type": "text",
-        "content": "Paris"
+        "content": "Baku"
       },
-      "lastModified": "2023-12-19T12:00:00Z",
-      "status": "Want to Learn"
+      "lastModified": "2024-01-02T21:00:13.734Z",
+      "status": "Noted",
+      "id": 1
     },
     {
-      "id": 2,
       "front": {
         "type": "image",
         "content": "image1.jpeg"
@@ -23,8 +22,9 @@
         "type": "text",
         "content": "This is an image of the Maiden Tower in Baku."
       },
-      "lastModified": "2023-12-18T15:30:00Z",
-      "status": "Learned"
+      "lastModified": "2024-01-02T21:24:20.583Z",
+      "status": "Learned",
+      "id": 2
     },
     {
       "id": 3,
@@ -129,6 +129,45 @@
       },
       "lastModified": "2023-12-13T16:05:00Z",
       "status": "Learned"
+    },
+    {
+      "front": {
+        "type": "question",
+        "content": "What is the name of national dress in Korea?"
+      },
+      "back": {
+        "type": "text",
+        "content": "Hanbok"
+      },
+      "lastModified": "2024-01-02T19:33:05.872Z",
+      "status": "Noted",
+      "id": 11
+    },
+    {
+      "front": {
+        "type": "image",
+        "content": "blob:http://localhost:3000/09f607d9-f9b1-48ef-9874-b0b2304aed1f"
+      },
+      "back": {
+        "type": "text",
+        "content": "Art Gallery"
+      },
+      "lastModified": "2024-01-02T19:33:29.386Z",
+      "status": "Want to Learn",
+      "id": 12
+    },
+    {
+      "front": {
+        "type": "question",
+        "content": "What is REST?"
+      },
+      "back": {
+        "type": "text",
+        "content": "Design Principle"
+      },
+      "lastModified": "2024-01-02T20:44:34.721Z",
+      "status": "Noted",
+      "id": 13
     }
   ]
 }
