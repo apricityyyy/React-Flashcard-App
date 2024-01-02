@@ -26,6 +26,11 @@ function Flashcard({ card/*, onEdit, onDelete*/ }) {
         }
     };
 
+    function formatDateTime(isoString) {
+        const date = new Date(isoString);
+        return date.toLocaleString(); // Converts to a string using the local timezone
+    }    
+
     return (
         <div className={`flashcard ${isFlipped ? 'flipped' : ''}`} onClick={flipCard}>
             <div className="flashcard-inner">
@@ -38,7 +43,7 @@ function Flashcard({ card/*, onEdit, onDelete*/ }) {
 
                 <div className='date-and-status'>
                     <p className="status">{card.status}</p>
-                    <p className="last-modified">{card.lastModified}</p>
+                    <p className="last-modified">{formatDateTime(card.lastModified)}</p>
                 </div>
             </div>
 

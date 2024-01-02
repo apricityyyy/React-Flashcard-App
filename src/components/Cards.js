@@ -13,17 +13,17 @@ function cardsReducer(cards, action) {
         }
         case 'added': {
             return [...cards, {
-                id: action.id,
+                id: action.card.id,
                 front: {
-                    type: action.front.type,
-                    content: action.front.content
+                    type: action.card.front.type,
+                    content: action.card.front.content
                 },
                 back: {
                     type: "text",
-                    content: action.back.content
+                    content: action.card.back.content
                 },
-                lastModified: action.lastModified,
-                status: action.status
+                lastModified: action.card.lastModified,
+                status: action.card.status
             }];
         }
         case 'edited': {
@@ -71,28 +71,25 @@ function Cards() {
         setEditingCard(null);
     };
 
-    function handleAddCard({ frontType, frontContent, backContent, lastModified, status}) {
-        const newCard = {
-            id: nextId++,
-            front: { type: frontType, content: frontContent },
-            back: { content: backContent },
-            lastModified: lastModified,
-            status: status
-        };
-
-        // POST request to add the card to the server
-        fetch('http://localhost:5000/flashCards', {
+    function handleAddCard(cardData, isFormData) {
+        // Prepare the requestOptions
+        const requestOptions = {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(newCard),
-        })
-
-        .then(response => response.json())
-        .then(() => dispatch({ type: 'added', card: newCard }))
-        .catch(error => console.error('Error adding card:', error));
-    }
+            headers: isFormData ? {} : { 'Content-Type': 'application/json' },
+            body: isFormData ? cardData : JSON.stringify(cardData)
+        };
+    
+        // Make the fetch request to add the card
+        fetch('http://localhost:5000/flashCards', requestOptions)
+            .then(response => response.json())
+            .then(data => {
+                if (data) {
+                    // Assuming 'data' contains the added card; update the state
+                    dispatch({ type: 'added', card: data });
+                }
+            })
+            .catch(error => console.error('Error adding card:', error));
+    }    
 
     function handleEditCard(card) {
         dispatch({

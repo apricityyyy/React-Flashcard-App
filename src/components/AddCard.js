@@ -1,44 +1,42 @@
 import { useState } from 'react';
 
 export default function AddCard({ onAddCard, editingCard }) {
-    const [frontType, setFrontType] = useState(editingCard?.type || 'text');
+    const [frontType, setFrontType] = useState(editingCard?.front.type || 'text');
     const [frontContent, setFrontContent] = useState(editingCard?.front.content || '');
     const [backContent, setBackContent] = useState(editingCard?.back.content || '');
     const [imageFile, setImageFile] = useState(null);
-    const [status, setStatus] = useState('Noted'); 
+    const [status, setStatus] = useState(editingCard?.status || 'Noted');
 
     const handleSubmit = () => {
-        // Create a FormData object to send the file
-        // Properties: { frontType, frontContent, backContent, lastModified, status }
-        const formData = new FormData();
-        if (frontType === 'text') {
-            if (frontContent.endsWith('?')) {
-                formData.append('frontType', 'question')
-            } else {
-                formData.append('frontType', 'text')
-            }
+        const newCard = {
+            front: {
+                type: frontType,
+                content: frontType === 'text' ? frontContent : undefined,
+                url: frontType === 'image' ? imageFile.name : undefined
+            },
+            back: {
+                type: "text", // Assuming the back is always text
+                content: backContent
+            },
+            lastModified: new Date().toISOString(),
+            status: status
+        };
 
-            formData.append('frontContent', frontContent);
+        if (frontType === 'image') {
+            const formData = new FormData();
+            formData.append('image', imageFile);
+            // Add other card details as JSON string
+            formData.append('cardData', JSON.stringify(newCard));
+            onAddCard(formData, true); // Indicate that this is a FormData submission
         } else {
-            formData.append('frontType', frontType)
-            formData.append('frontContent', imageFile);
-            console.log(imageFile)
+            onAddCard(newCard, false); // Regular JSON submission
         }
-
-        formData.append('backContent', backContent)
-
-        const currentDateTime = new Date().toISOString();
-        formData.append('lastModified', currentDateTime);
-
-        formData.append('status', status); 
-
-        onAddCard(formData); 
 
         // Reset fields
         setFrontContent('');
         setBackContent('');
         setImageFile(null);
-        setStatus('Noted')
+        setStatus('Noted');
     };
 
     const handleFileChange = (e) => {
