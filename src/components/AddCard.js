@@ -5,14 +5,14 @@ export default function AddCard({ onAddCard, editingCard }) {
     const [frontContent, setFrontContent] = useState(editingCard?.front.content || '');
     const [backContent, setBackContent] = useState(editingCard?.back.content || '');
     const [imageFile, setImageFile] = useState(null);
+    const [status, setStatus] = useState('Noted'); 
 
     const handleSubmit = () => {
         // Create a FormData object to send the file
         // Properties: { frontType, frontContent, backContent, lastModified, status }
-
         const formData = new FormData();
         if (frontType === 'text') {
-            if (textContent.endsWith('?')) {
+            if (frontContent.endsWith('?')) {
                 formData.append('frontType', 'question')
             } else {
                 formData.append('frontType', 'text')
@@ -30,12 +30,15 @@ export default function AddCard({ onAddCard, editingCard }) {
         const currentDateTime = new Date().toISOString();
         formData.append('lastModified', currentDateTime);
 
-        onAddCard(formData); // Assuming onAddCard can handle FormData
+        formData.append('status', status); 
+
+        onAddCard(formData); 
 
         // Reset fields
         setFrontContent('');
         setBackContent('');
         setImageFile(null);
+        setStatus('Noted')
     };
 
     const handleFileChange = (e) => {
@@ -44,12 +47,12 @@ export default function AddCard({ onAddCard, editingCard }) {
 
     return (
         <>
-            <div class='frontInput'>
+            <div className='frontInput'>
                 <label>
                     <input
                         type="radio"
                         value="text"
-                        checked={cardType === 'text'}
+                        checked={frontType === 'text'}
                         onChange={() => setFrontType('text')}
                     />
                     Text/Question
@@ -58,17 +61,17 @@ export default function AddCard({ onAddCard, editingCard }) {
                     <input
                         type="radio"
                         value="image"
-                        checked={cardType === 'image'}
+                        checked={frontType === 'image'}
                         onChange={() => setFrontType('image')}
                     />
                     Image
                 </label>
             </div>
 
-            {cardType === 'text' ? (
+            {frontType === 'text' ? (
                 <input
                     placeholder="Add text content or a question"
-                    value={textContent}
+                    value={frontContent}
                     onChange={e => setFrontContent(e.target.value)}
                 />
             ) : (
@@ -79,13 +82,19 @@ export default function AddCard({ onAddCard, editingCard }) {
                 />
             )}
 
-            <div class='backInput'>
+            <div className='backInput'>
                 <input
                     placeholder="Answer, information about the text, image, or anything to remember"
-                    value={textContent}
+                    value={backContent}
                     onChange={e => setBackContent(e.target.value)}
                 />
             </div>
+
+            <select value={status} onChange={e => setStatus(e.target.value)}>
+                <option value="Learned">Learned</option>
+                <option value="Want to Learn">Want to Learn</option>
+                <option value="Noted">Noted</option>
+            </select>
 
             <button onClick={handleSubmit}>Add</button>
         </>

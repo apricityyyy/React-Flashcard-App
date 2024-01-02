@@ -88,7 +88,7 @@ function Cards() {
             },
             body: JSON.stringify(newCard),
         })
-        
+
         .then(response => response.json())
         .then(() => dispatch({ type: 'added', card: newCard }))
         .catch(error => console.error('Error adding card:', error));
@@ -118,7 +118,7 @@ function Cards() {
                 ))}
             </div>
 
-            <div class='add-or-edit-card'>
+            <div className='add-or-edit-card'>
                 <button onClick={() => handleOpenPopUp()}>Add New Card</button>
                 <PopUp isOpen={isPopUpOpen} onClose={handleClosePopUp}>
                     <AddCard onAddCard={handleAddCard} editingCard={editingCard} />

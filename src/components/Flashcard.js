@@ -15,7 +15,7 @@ function Flashcard({ card/*, onEdit, onDelete*/ }) {
                 return (
                     <>
                         <h3>What does below image indicate?</h3>
-                        <img src={require(`${card.front.url}`)} alt={card.id} />
+                        <img src={card.front.url.includes('http') ? card.front.url : require(`../assets/images/${card.front.url}`)} alt={card.id} />
                     </>
                 )
             } catch {
