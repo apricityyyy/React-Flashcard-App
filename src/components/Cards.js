@@ -155,7 +155,7 @@ function Cards() {
                 </div>
 
                 <PopUp isOpen={isPopUpOpen} onClose={handleClosePopUp}>
-                    <AddCard onAddCard={handleAddCard} onEditCard={handleEditCard} editingCard={editingCard} onClose={handleClosePopUp} />
+                    <AddCard onAddCard={handleAddCard} onEditCard={handleEditCard} editingCard={editingCard} />
                 </PopUp>
             </div>
 

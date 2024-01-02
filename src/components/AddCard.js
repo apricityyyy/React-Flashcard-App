@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export default function AddCard({ onAddCard, editingCard, onEditCard, onClose }) {
+export default function AddCard({ onAddCard, editingCard, onEditCard }) {
     const [frontType, setFrontType] = useState(editingCard?.front.type || 'text');
     const [frontContent, setFrontContent] = useState(editingCard?.front.content || '');
     const [backContent, setBackContent] = useState(editingCard?.back.content || '');

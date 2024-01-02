@@ -81,6 +81,10 @@
 }
 
 .flashcard-buttons {
+    display: none;
+}
+
+.flashcard:hover .flashcard-buttons {
     display: flex;
     justify-content: space-between;
 }
@@ -111,7 +115,7 @@
 
 .add-or-edit-card button:hover,
 .add-card button:hover,
-.flashcard-inner-button:hover  {
+.flashcard-inner-button:hover {
     background-color: #7ed321;
     transform: scale(1.05);
 }
@@ -130,7 +134,8 @@
 }
 
 .frontType input {
-    font-size: 16px;;
+    font-size: 16px;
+    ;
 }
 
 .frontInput,
