@@ -1,69 +1,93 @@
 import { useState } from 'react';
 
-export default function AddCard({ onAddCard }) {
-  const [cardType, setCardType] = useState('text');
-  const [textContent, setTextContent] = useState('');
-  const [imageFile, setImageFile] = useState(null);
+export default function AddCard({ onAddCard, editingCard }) {
+    const [frontType, setFrontType] = useState(editingCard?.type || 'text');
+    const [frontContent, setFrontContent] = useState(editingCard?.front.content || '');
+    const [backContent, setBackContent] = useState(editingCard?.back.content || '');
+    const [imageFile, setImageFile] = useState(null);
 
-  const handleSubmit = () => {
-    // Create a FormData object to send the file
-    const formData = new FormData();
-    formData.append('cardType', cardType);
-    if (cardType === 'text') {
-      formData.append('content', textContent);
-    } else {
-      formData.append('image', imageFile);
-    }
+    const handleSubmit = () => {
+        // Create a FormData object to send the file
+        // Properties: { frontType, frontContent, backContent, lastModified, status }
 
-    onAddCard(formData); // Assuming onAddCard can handle FormData
+        const formData = new FormData();
+        if (frontType === 'text') {
+            if (textContent.endsWith('?')) {
+                formData.append('frontType', 'question')
+            } else {
+                formData.append('frontType', 'text')
+            }
 
-    // Reset fields
-    setTextContent('');
-    setImageFile(null);
-  };
+            formData.append('frontContent', frontContent);
+        } else {
+            formData.append('frontType', frontType)
+            formData.append('frontContent', imageFile);
+            console.log(imageFile)
+        }
 
-  const handleFileChange = (e) => {
-    setImageFile(e.target.files[0]);
-  };
+        formData.append('backContent', backContent)
 
-  return (
-    <>
-      <div>
-        <label>
-          <input
-            type="radio"
-            value="text"
-            checked={cardType === 'text'}
-            onChange={() => setCardType('text')}
-          />
-          Text/Question
-        </label>
-        <label>
-          <input
-            type="radio"
-            value="image"
-            checked={cardType === 'image'}
-            onChange={() => setCardType('image')}
-          />
-          Image
-        </label>
-      </div>
+        const currentDateTime = new Date().toISOString();
+        formData.append('lastModified', currentDateTime);
 
-      {cardType === 'text' ? (
-        <input
-          placeholder="Add text content or a question"
-          value={textContent}
-          onChange={e => setTextContent(e.target.value)}
-        />
-      ) : (
-        <input
-          type="file"
-          accept="image/*"
-          onChange={handleFileChange}
-        />
-      )}
+        onAddCard(formData); // Assuming onAddCard can handle FormData
 
-      <button onClick={handleSubmit}>Add</button>
-    </>
-  );
+        // Reset fields
+        setFrontContent('');
+        setBackContent('');
+        setImageFile(null);
+    };
+
+    const handleFileChange = (e) => {
+        setImageFile(e.target.files[0]);
+    };
+
+    return (
+        <>
+            <div class='frontInput'>
+                <label>
+                    <input
+                        type="radio"
+                        value="text"
+                        checked={cardType === 'text'}
+                        onChange={() => setFrontType('text')}
+                    />
+                    Text/Question
+                </label>
+                <label>
+                    <input
+                        type="radio"
+                        value="image"
+                        checked={cardType === 'image'}
+                        onChange={() => setFrontType('image')}
+                    />
+                    Image
+                </label>
+            </div>
+
+            {cardType === 'text' ? (
+                <input
+                    placeholder="Add text content or a question"
+                    value={textContent}
+                    onChange={e => setFrontContent(e.target.value)}
+                />
+            ) : (
+                <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleFileChange}
+                />
+            )}
+
+            <div class='backInput'>
+                <input
+                    placeholder="Answer, information about the text, image, or anything to remember"
+                    value={textContent}
+                    onChange={e => setBackContent(e.target.value)}
+                />
+            </div>
+
+            <button onClick={handleSubmit}>Add</button>
+        </>
+    );
 }

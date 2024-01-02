@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function Flashcard({ card }) {
+function Flashcard({ card/*, onEdit, onDelete*/ }) {
     const [isFlipped, setIsFlipped] = useState(false);
 
     const flipCard = () => setIsFlipped(!isFlipped);
@@ -15,7 +15,7 @@ function Flashcard({ card }) {
                 return (
                     <>
                         <h3>What does below image indicate?</h3>
-                        <img src={require(`../assets/images/${card.front.url}`)} alt={card.id} />
+                        <img src={require(`${card.front.url}`)} alt={card.id} />
                     </>
                 )
             } catch {
@@ -41,6 +41,9 @@ function Flashcard({ card }) {
                     <p className="last-modified">{card.lastModified}</p>
                 </div>
             </div>
+
+            {/* <button onClick={() => onEdit(card)}>Edit</button>
+            <button onClick={() => onDelete(card.id)}>Delete</button> */}
         </div >
     );
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import './PopUp.css'
 
 function PopUp({ isOpen, onClose, children }) {
   if (!isOpen) return null;
@@ -13,4 +14,4 @@ function PopUp({ isOpen, onClose, children }) {
   );
 }
 
-export default Modal;
+export default PopUp;

@@ -17,7 +17,7 @@
         "id": 2,
         "front": {
           "type": "image",
-          "url": "image1.jpeg"
+          "url": "../assets/images/image1.jpeg"
         },
         "back": {
           "type": "text",
@@ -56,7 +56,7 @@
         "id": 5,
         "front": {
           "type": "image",
-          "url": "image2.webp"
+          "url": "../assets/images/image2.webp"
         },
         "back": {
           "type": "text",
@@ -108,7 +108,7 @@
         "id": 9,
         "front": {
           "type": "image",
-          "url": "image3.webp"
+          "url": "../assets/images/image3.webp"
         },
         "back": {
           "type": "text",
