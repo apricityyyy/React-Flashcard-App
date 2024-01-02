@@ -7,7 +7,9 @@ function Flashcard({ card }) {
 
     const renderCardContent = (cardSide) => {
         if (cardSide.type === "text" || cardSide.type === "question") {
-            return <h3>{cardSide.content}</h3>;
+            return (
+                <h3>{cardSide.content}</h3>
+            )
         } else if (cardSide.url) {
             try {
                 return (
@@ -25,20 +27,21 @@ function Flashcard({ card }) {
     };
 
     return (
-        <div className="flashcard" onClick={flipCard}>
-            {isFlipped ? (
+        <div className={`flashcard ${isFlipped ? 'flipped' : ''}`} onClick={flipCard}>
+            <div className="flashcard-inner">
+                <div className="flashcard-front">
+                    {renderCardContent(card.front)}
+                </div>
                 <div className="flashcard-back">
                     {renderCardContent(card.back)}
                 </div>
-            ) : (
-                <div className="flashcard-front" id={card.id}>
-                    {renderCardContent(card.front)}
-                </div>
-            )}
 
-            <p id="last-modified">Last Modified: {card.lastModified}</p>
-            <p id="status">{card.status}</p>
-        </div>
+                <div className='date-and-status'>
+                    <p className="status">{card.status}</p>
+                    <p className="last-modified">{card.lastModified}</p>
+                </div>
+            </div>
+        </div >
     );
 }
 
