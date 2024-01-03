@@ -4,7 +4,7 @@ export default function AddCard({ onAddCard, editingCard, onEditCard }) {
     const [frontType, setFrontType] = useState(editingCard?.front.type || 'text');
     const [frontContent, setFrontContent] = useState(editingCard?.front.content || '');
     const [backContent, setBackContent] = useState(editingCard?.back.content || '');
-    const [file, setFile] = useState('');
+    const [file, setFile] = useState(editingCard?.front.content || '');
     const [status, setStatus] = useState(editingCard?.status || 'Noted');
 
     const handleSubmit = () => {
@@ -107,12 +107,27 @@ export default function AddCard({ onAddCard, editingCard, onEditCard }) {
                         onChange={e => setFrontContent(e.target.value)}
                     />
                 ) : (
-                    <input
-                        type="file"
-                        accept="image/*"
-                        onChange={handleChange}
-                    />
-                ))}
+                    (editingCard !== null ?
+                        (
+                            <div style={{display: "flex", justifyContent: "space-around"}}>
+                                <img style={{ width: '100px', height: 'auto', maxHeight: '200px' }} src={editingCard.front.content.includes('http') ? editingCard.front.content : require(`../assets/images/${editingCard.front.content}`)} alt={editingCard.id} />
+                                <input
+                                    type="file"
+                                    accept="image/*"
+                                    onChange={handleChange}
+                                />
+                            </div>
+                        )
+                        : (
+                            <input
+                                type="file"
+                                accept="image/*"
+                                onChange={handleChange}
+                            />
+                        )
+                    )
+                )
+                )}
             </div>
 
             <div className='backInput'>

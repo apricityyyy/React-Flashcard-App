@@ -29,13 +29,13 @@
     {
       "front": {
         "type": "question",
-        "content": "Explain the theory of."
+        "content": "Explain the theory of relativity."
       },
       "back": {
         "type": "text",
         "content": "The theory of relativity, proposed by Einstein, explains the laws of gravity and the relationship between space and time."
       },
-      "lastModified": "2024-01-02T21:55:24.682Z",
+      "lastModified": "2024-01-02T23:29:07.565Z",
       "status": "Noted",
       "id": 3
     },

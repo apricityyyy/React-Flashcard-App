@@ -46,13 +46,32 @@ function cardsReducer(cards, action) {
 function Cards() {
     /*Get Cards*/
     const [cards, dispatch] = useReducer(cardsReducer, []);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [statusFilter, setStatusFilter] = useState('');
+    const [sortAttribute, setSortAttribute] = useState('');
 
     useEffect(() => {
-        fetch('http://localhost:5000/flashCards')
+        let apiUrl = 'http://localhost:5000/flashCards?';
+
+        if (searchTerm) {
+            apiUrl += `&q=${encodeURIComponent(searchTerm)}`;
+        }
+
+        if (statusFilter) {
+            apiUrl += `&status=${encodeURIComponent(statusFilter)}`;
+        }
+
+        if (sortAttribute) {
+            apiUrl += `&_sort=${encodeURIComponent(sortAttribute)}&_order=desc`
+        }
+
+        console.log(apiUrl)
+
+        fetch(apiUrl)
             .then(response => response.json())
             .then(data => dispatch({ type: 'init', cards: data }))
             .catch(error => console.error('Error fetching data:', error));
-    }, []);
+    }, [searchTerm, statusFilter, sortAttribute]); // Re-run the effect when searchTerm changes    
 
     /*Add/Edit/Delete Card*/
     const [isPopUpOpen, setIsPopUpOpen] = useState(false);
@@ -80,6 +99,7 @@ function Cards() {
         fetch('http://localhost:5000/flashCards', requestOptions)
             .then(response => response.json())
             .then(data => {
+                console.log(data)
                 if (data) {
                     dispatch({ type: 'added', card: data });
                 }
@@ -142,6 +162,35 @@ function Cards() {
     return (
         <>
             <Header />
+
+            <div className='search-and-filter'>
+                <div className="filter-container">
+                    <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
+                        <option value="">All Statuses</option>
+                        <option value="Learned">Learned</option>
+                        <option value="Want to Learn">Want to Learn</option>
+                        <option value="Noted">Noted</option>
+                    </select>
+                </div>
+
+                <div className="search-container">
+                    <input
+                        type="text"
+                        placeholder="Search cards..."
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                    />
+                </div>
+
+                <div className="sort-container">
+                    <select value={sortAttribute} onChange={(e) => setSortAttribute(e.target.value)}>
+                        <option value="">Not Sorted</option>
+                        <option value="lastModified">Sort by Date</option>
+                        <option value="front.content">Sort by Front Content</option>
+                        <option value="back.content">Sort by Back Content</option>
+                    </select>
+                </div>
+            </div>
 
             <div className="flashcard-list">
                 {cards.map(card => (
