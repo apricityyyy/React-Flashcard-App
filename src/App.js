@@ -4,6 +4,7 @@ import Cards from './components/Cards'
 import NoMatchRoute from './components/NoMatchRoute'
 import { Route, Routes } from 'react-router-dom'
 import "./App.css"
+import ContactMe from './components/ContactMe'
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Route path="/" element={<Home />} />
       <Route path="/home" element={<Home />} />
       <Route path="/cards" element={<Cards />} />
+      <Route path="/contact" element={<ContactMe />} />
       <Route path="/*" element={<NoMatchRoute />} />
     </Routes>
   </div>

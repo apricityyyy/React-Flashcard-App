@@ -208,5 +208,37 @@
       "status": "Want to Learn",
       "id": 16
     }
+  ],
+  "messages": [
+    {
+      "id": 1,
+      "subject": "Inquiry about React Project",
+      "email": "john.doe@example.com",
+      "message": "Hello, I'm interested in learning more about your React projects. Could you provide more details?"
+    },
+    {
+      "id": 2,
+      "subject": "Feedback on your Portfolio",
+      "email": "jane.smith@example.com",
+      "message": "Hi, I just visited your portfolio and really liked the design. Great work!"
+    },
+    {
+      "id": 3,
+      "subject": "Collaboration Proposal",
+      "email": "alex.jordan@example.net",
+      "message": "We are looking for talented developers for collaboration. Are you interested in joining our project?"
+    },
+    {
+      "id": 4,
+      "subject": "Question Regarding Web Development",
+      "email": "sarah.connor@example.org",
+      "message": "Could you recommend some resources for learning advanced web development techniques?"
+    },
+    {
+      "id": 5,
+      "subject": "Hiring Inquiry",
+      "email": "mike.brown@example.biz",
+      "message": "Our company is impressed with your skills and would like to discuss a potential job opportunity."
+    }
   ]
 }

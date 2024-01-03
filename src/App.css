@@ -1,3 +1,11 @@
-h1, h2, h3 {
+h1,
+h2,
+h3 {
     font-family: Arial, Helvetica, sans-serif;
 }
+
+main {
+    position: relative;
+    min-height: 100vh;
+}
+

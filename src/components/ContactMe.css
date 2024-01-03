@@ -1,0 +1,68 @@
+/*Overall*/
+.contact-main {
+    margin-top: 150px;
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 5rem;
+}
+
+/*Form Input*/
+form {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 90%;
+}
+
+.inputs {
+    display: flex;
+    gap: 30px;
+    height: 30px;
+}
+
+textarea {
+    height: 100px;
+}
+
+input,
+textarea {
+    appearance: none;
+    border: none;
+    outline: none;
+    border-bottom: .2em solid #7cabe1;
+    background: rgba(#7cabe1, .2);
+    border-radius: .2em .2em 0 0;
+    padding: .4em;
+    font-size: 16px;
+}
+
+input:focus,
+textarea:focus {
+    background-color: #D6EAF8;
+}
+
+button {
+    color: #f0f2f5;
+    background-color: #7cabe1;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+button:hover {
+    background-color: #7ed321;
+    transform: scale(1.05);
+}
+
+button:focus {
+    outline: none;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+}

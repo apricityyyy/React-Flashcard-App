@@ -52,24 +52,24 @@ function Cards() {
 
     function fetchCards() {
         let apiUrl = 'http://localhost:5000/flashCards?';
-    
+
         if (searchTerm) {
             apiUrl += `&q=${encodeURIComponent(searchTerm)}`;
         }
-    
+
         if (statusFilter) {
             apiUrl += `&status=${encodeURIComponent(statusFilter)}`;
         }
-    
+
         if (sortAttribute) {
             apiUrl += `&_sort=${encodeURIComponent(sortAttribute)}&_order=desc`;
         }
-    
+
         fetch(apiUrl)
             .then(response => response.json())
             .then(data => dispatch({ type: 'init', cards: data }))
             .catch(error => console.error('Error fetching data:', error));
-    }    
+    }
 
     useEffect(() => {
         fetchCards()
@@ -96,18 +96,18 @@ function Cards() {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(cardData)
         };
-    
+
         // Make the fetch request to add the card
         fetch('http://localhost:5000/flashCards', requestOptions)
             .then(response => response.json())
             .then(data => {
                 if (data) {
                     dispatch({ type: 'added', card: data });
-                    fetchCards(); 
+                    fetchCards();
                 }
             })
             .catch(error => console.error('Error adding card:', error));
-    }    
+    }
 
     function handleEditCard(cardData) {
         // Check if cardData has an id
@@ -163,56 +163,58 @@ function Cards() {
     }
 
     return (
-        <>
+        <main>
             <Header />
 
-            <div className='search-and-filter'>
-                <div className="filter-container">
-                    <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
-                        <option value="">All Statuses</option>
-                        <option value="Learned">Learned</option>
-                        <option value="Want to Learn">Want to Learn</option>
-                        <option value="Noted">Noted</option>
-                    </select>
+            <div className='cards-container'>
+                <div className='search-and-filter'>
+                    <div className="filter-container">
+                        <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
+                            <option value="">All Statuses</option>
+                            <option value="Learned">Learned</option>
+                            <option value="Want to Learn">Want to Learn</option>
+                            <option value="Noted">Noted</option>
+                        </select>
+                    </div>
+
+                    <div className="search-container">
+                        <input
+                            type="text"
+                            placeholder="Search cards..."
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                        />
+                    </div>
+
+                    <div className="sort-container">
+                        <select value={sortAttribute} onChange={(e) => setSortAttribute(e.target.value)}>
+                            <option value="">Not Sorted</option>
+                            <option value="lastModified">Sort by Date</option>
+                            <option value="front.content">Sort by Front Content</option>
+                            <option value="back.content">Sort by Back Content</option>
+                        </select>
+                    </div>
                 </div>
 
-                <div className="search-container">
-                    <input
-                        type="text"
-                        placeholder="Search cards..."
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                    />
+                <div className="flashcard-list">
+                    {cards.map(card => (
+                        <Flashcard key={card.id} card={card} onEdit={() => handleOpenPopUp(card)} onDelete={handleDeleteCard} />
+                    ))}
                 </div>
 
-                <div className="sort-container">
-                    <select value={sortAttribute} onChange={(e) => setSortAttribute(e.target.value)}>
-                        <option value="">Not Sorted</option>
-                        <option value="lastModified">Sort by Date</option>
-                        <option value="front.content">Sort by Front Content</option>
-                        <option value="back.content">Sort by Back Content</option>
-                    </select>
+                <div className='add-or-edit-card'>
+                    <div className='button-container'>
+                        <button onClick={() => handleOpenPopUp()}><b>Add New Card</b></button>
+                    </div>
+
+                    <PopUp isOpen={isPopUpOpen} onClose={handleClosePopUp}>
+                        <AddCard onAddCard={handleAddCard} onEditCard={handleEditCard} editingCard={editingCard} />
+                    </PopUp>
                 </div>
-            </div>
-
-            <div className="flashcard-list">
-                {cards.map(card => (
-                    <Flashcard key={card.id} card={card} onEdit={() => handleOpenPopUp(card)} onDelete={handleDeleteCard} />
-                ))}
-            </div>
-
-            <div className='add-or-edit-card'>
-                <div className='button-container'>
-                    <button onClick={() => handleOpenPopUp()}><b>Add New Card</b></button>
-                </div>
-
-                <PopUp isOpen={isPopUpOpen} onClose={handleClosePopUp}>
-                    <AddCard onAddCard={handleAddCard} onEditCard={handleEditCard} editingCard={editingCard} />
-                </PopUp>
             </div>
 
             <Footer />
-        </>
+        </main>
     );
 }
 
