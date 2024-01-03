@@ -75,13 +75,13 @@
     font-size: small;
     gap: 10px;
     justify-content: space-between;
-    margin-top: 350px;
+    margin-top: 320px;
     width: 100%;
     backface-visibility: hidden;
 }
 
 .flashcard-inner-button {
-    margin-top: 10px;
+    margin-top: -10px;
 }
 
 .flashcard-buttons {
@@ -106,7 +106,8 @@
 
 .add-or-edit-card button,
 .add-card button,
-.flashcard-inner-button {
+.flashcard-inner-button,
+.share-cards button {
     color: #f0f2f5;
     background-color: #7cabe1;
     padding: 10px 20px;
@@ -119,14 +120,16 @@
 
 .add-or-edit-card button:hover,
 .add-card button:hover,
-.flashcard-inner-button:hover {
+.flashcard-inner-button:hover,
+.share-cards button:hover {
     background-color: #7ed321;
     transform: scale(1.05);
 }
 
 .add-or-edit-card button:focus,
 .add-card button:focus,
-.flashcard-inner button:focus {
+.flashcard-inner button:focus,
+.share-cards button:focus {
     outline: none;
 }
 
@@ -139,7 +142,6 @@
 
 .frontType input {
     font-size: 16px;
-    ;
 }
 
 .frontInput,
@@ -186,25 +188,16 @@
 }
 
 /*Search/Filter*/
-.search-and-filter {
+.search-filter-sort-select {
     margin-top: 170px;
     display: flex;
     justify-content: space-around;
 }
 
-.search-container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-.filter-container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-.sort-container {
+.search-container,
+.filter-container,
+.sort-container,
+.share-cards {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -216,4 +209,23 @@
 
 .sort-container select {
     height: 100%;
+}
+
+/*Select*/
+.flashcard input {
+    width: 20px;
+    height: 20px;
+    display: none;
+}
+
+.flashcard input:checked {
+    display: block;
+}
+
+.flashcard input:hover {
+    cursor: pointer;
+}
+
+.flashcard:hover input {
+    display: block;
 }

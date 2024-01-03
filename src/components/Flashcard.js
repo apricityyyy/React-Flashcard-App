@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function Flashcard({ card, onEdit, onDelete }) {
+function Flashcard({ card, onEdit, onDelete, onSelect, isSelected }) {
     const [isFlipped, setIsFlipped] = useState(false);
 
     const flipCard = () => setIsFlipped(!isFlipped);
@@ -33,6 +33,12 @@ function Flashcard({ card, onEdit, onDelete }) {
 
     return (
         <div className={`flashcard ${isFlipped ? 'flipped' : ''}`} onClick={flipCard}>
+             <input
+                type="checkbox"
+                checked={isSelected}
+                onClick={(e) => {e.stopPropagation(); onSelect(card.id)}}
+            />
+
             <div className="flashcard-inner">
                 <div className="flashcard-front">
                     {renderCardContent(card.front)}

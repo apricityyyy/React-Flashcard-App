@@ -49,6 +49,7 @@ function Cards() {
     const [searchTerm, setSearchTerm] = useState('');
     const [statusFilter, setStatusFilter] = useState('');
     const [sortAttribute, setSortAttribute] = useState('');
+    const [selectedCards, setSelectedCards] = useState([]);
 
     function fetchCards() {
         let apiUrl = 'http://localhost:5000/flashCards?';
@@ -162,12 +163,33 @@ function Cards() {
             .catch(error => console.error('Error deleting card:', error));
     }
 
+    const handleSelectCard = (cardId) => {
+        setSelectedCards(prevSelected => {
+            if (prevSelected.includes(cardId)) {
+                return prevSelected.filter(id => id !== cardId);
+            } else {
+                return [...prevSelected, cardId];
+            }
+        });
+    };
+
+    const getEmailContent = () => {
+        const selectedCardDetails = cards.filter(card => selectedCards.includes(card.id));
+        return JSON.stringify(selectedCardDetails, null, 2);
+    };
+
+    const handleSendEmail = () => {
+        const emailBody = getEmailContent();
+        const mailto = `mailto:?subject=Shared Flash Cards&body=${encodeURIComponent(emailBody)}`;
+        window.location.href = mailto;
+    };
+
     return (
         <main>
             <Header />
 
             <div className='cards-container'>
-                <div className='search-and-filter'>
+                <div className='search-filter-sort-select'>
                     <div className="filter-container">
                         <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
                             <option value="">All Statuses</option>
@@ -194,11 +216,22 @@ function Cards() {
                             <option value="back.content">Sort by Back Content</option>
                         </select>
                     </div>
+
+                    <div className='share-cards'>
+                        <button onClick={handleSendEmail}>Share Selected Cards</button>
+                    </div>
                 </div>
 
                 <div className="flashcard-list">
                     {cards.map(card => (
-                        <Flashcard key={card.id} card={card} onEdit={() => handleOpenPopUp(card)} onDelete={handleDeleteCard} />
+                        <Flashcard
+                            key={card.id}
+                            card={card}
+                            onEdit={() => handleOpenPopUp(card)}
+                            onDelete={handleDeleteCard}
+                            onSelect={handleSelectCard}
+                            isSelected={selectedCards.includes(card.id)}
+                        />
                     ))}
                 </div>
 

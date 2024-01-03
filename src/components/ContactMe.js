@@ -57,7 +57,7 @@ function ContactMe() {
                         required
                     />
 
-                    <div className='button-container'>
+                    <div className='contact-button-container'>
                         <button style={{ width: '20%' }} type="submit">Send Message</button>
                     </div>
                 </form>
