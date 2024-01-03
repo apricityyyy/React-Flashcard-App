@@ -29,13 +29,13 @@
     {
       "front": {
         "type": "question",
-        "content": "Explain the theory of relativity."
+        "content": "Explain theory of relativity."
       },
       "back": {
         "type": "text",
         "content": "The theory of relativity, proposed by Einstein, explains the laws of gravity and the relationship between space and time."
       },
-      "lastModified": "2024-01-02T23:29:07.565Z",
+      "lastModified": "2024-01-03T11:27:48.485Z",
       "status": "Noted",
       "id": 3
     },
@@ -79,20 +79,19 @@
       "status": "Noted"
     },
     {
-      "id": 7,
       "front": {
         "type": "question",
-        "content": "Who wrote 'To Kill a Mockingbird'?"
+        "content": "Who wrote the work 'To Kill a Mockingbird'?"
       },
       "back": {
         "type": "text",
         "content": "Harper Lee"
       },
-      "lastModified": "2023-12-16T11:00:00Z",
-      "status": "Learned"
+      "lastModified": "2024-01-03T11:15:41.802Z",
+      "status": "Learned",
+      "id": 7
     },
     {
-      "id": 8,
       "front": {
         "type": "text",
         "content": "What is the main ingredient in sushi?"
@@ -101,8 +100,9 @@
         "type": "text",
         "content": "Rice"
       },
-      "lastModified": "2023-12-15T13:35:00Z",
-      "status": "Want to Learn"
+      "lastModified": "2024-01-03T11:35:25.572Z",
+      "status": "Learned",
+      "id": 8
     },
     {
       "id": 9,
@@ -146,13 +146,13 @@
     {
       "front": {
         "type": "image",
-        "content": "blob:http://localhost:3000/09370d54-20a9-4cad-ae65-76baa16f693f"
+        "content": "blob:http://localhost:3000/5c8a95ad-3468-4b45-84d0-73e6dc95be83"
       },
       "back": {
         "type": "text",
         "content": "Art Gallery"
       },
-      "lastModified": "2024-01-02T21:32:35.381Z",
+      "lastModified": "2024-01-03T11:30:00.476Z",
       "status": "Want to Learn",
       "id": 12
     },
@@ -185,26 +185,26 @@
     {
       "front": {
         "type": "question",
-        "content": "What is the capital of France?"
+        "content": "What is city of France?"
       },
       "back": {
         "type": "text",
         "content": "Paris"
       },
-      "lastModified": "2024-01-02T21:54:31.128Z",
+      "lastModified": "2024-01-03T11:35:44.497Z",
       "status": "Noted",
       "id": 15
     },
     {
       "front": {
         "type": "image",
-        "content": "blob:http://localhost:3000/5db0e0a9-a902-453a-b701-9b9e13ca23ff"
+        "content": "blob:http://localhost:3000/bf1dcfa2-0b42-4136-bd39-954c2cd83c12"
       },
       "back": {
         "type": "text",
         "content": "Museum"
       },
-      "lastModified": "2024-01-02T21:54:59.426Z",
+      "lastModified": "2024-01-03T11:30:17.117Z",
       "status": "Want to Learn",
       "id": 16
     }

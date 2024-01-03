@@ -50,27 +50,29 @@ function Cards() {
     const [statusFilter, setStatusFilter] = useState('');
     const [sortAttribute, setSortAttribute] = useState('');
 
-    useEffect(() => {
+    function fetchCards() {
         let apiUrl = 'http://localhost:5000/flashCards?';
-
+    
         if (searchTerm) {
             apiUrl += `&q=${encodeURIComponent(searchTerm)}`;
         }
-
+    
         if (statusFilter) {
             apiUrl += `&status=${encodeURIComponent(statusFilter)}`;
         }
-
+    
         if (sortAttribute) {
-            apiUrl += `&_sort=${encodeURIComponent(sortAttribute)}&_order=desc`
+            apiUrl += `&_sort=${encodeURIComponent(sortAttribute)}&_order=desc`;
         }
-
-        console.log(apiUrl)
-
+    
         fetch(apiUrl)
             .then(response => response.json())
             .then(data => dispatch({ type: 'init', cards: data }))
             .catch(error => console.error('Error fetching data:', error));
+    }    
+
+    useEffect(() => {
+        fetchCards()
     }, [searchTerm, statusFilter, sortAttribute]); // Re-run the effect when searchTerm changes    
 
     /*Add/Edit/Delete Card*/
@@ -94,18 +96,18 @@ function Cards() {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(cardData)
         };
-
+    
         // Make the fetch request to add the card
         fetch('http://localhost:5000/flashCards', requestOptions)
             .then(response => response.json())
             .then(data => {
-                console.log(data)
                 if (data) {
                     dispatch({ type: 'added', card: data });
+                    fetchCards(); 
                 }
             })
             .catch(error => console.error('Error adding card:', error));
-    }
+    }    
 
     function handleEditCard(cardData) {
         // Check if cardData has an id
@@ -126,8 +128,8 @@ function Cards() {
             .then(response => response.json())
             .then(updatedCard => {
                 if (updatedCard) {
-                    // Assuming 'updatedCard' contains the updated card data
                     dispatch({ type: 'edited', card: updatedCard });
+                    fetchCards();
                 }
             })
             .catch(error => console.error('Error editing card:', error));
@@ -152,6 +154,7 @@ function Cards() {
                 if (response.ok) {
                     // Update the local state if the server successfully processed the deletion
                     dispatch({ type: 'deleted', id: cardId });
+                    fetchCards();
                 } else {
                     console.error('Server error during card deletion');
                 }
