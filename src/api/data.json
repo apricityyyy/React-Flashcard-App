@@ -42,19 +42,6 @@
     {
       "id": 4,
       "front": {
-        "type": "image",
-        "content": "image2.webp"
-      },
-      "back": {
-        "type": "text",
-        "content": "A diagram of the human circulatory system."
-      },
-      "lastModified": "2023-12-17T10:20:00Z",
-      "status": "Want to Learn"
-    },
-    {
-      "id": 5,
-      "front": {
         "type": "question",
         "content": "What is the name of national dress in Korea?"
       },
@@ -62,8 +49,21 @@
         "type": "text",
         "content": "Hanbok"
       },
-      "lastModified": "2023-12-18T08:45:00Z",
+      "lastModified": "2023-12-17T10:20:00Z",
       "status": "Noted"
+    },
+    {
+      "id": 5,
+      "front": {
+        "type": "image",
+        "content": "image2.webp"
+      },
+      "back": {
+        "type": "text",
+        "content": "A diagram of the human circulatory system."
+      },
+      "lastModified": "2023-12-18T08:45:00Z",
+      "status": "Want to Learn"
     },
     {
       "id": 6,
@@ -94,13 +94,13 @@
     {
       "front": {
         "type": "text",
-        "content": "What is the main ingredient in sushi?"
+        "content": "What is the ingredient in sushi?"
       },
       "back": {
         "type": "text",
         "content": "Rice"
       },
-      "lastModified": "2024-01-03T11:35:25.572Z",
+      "lastModified": "2024-01-04T07:18:23.654Z",
       "status": "Learned",
       "id": 8
     },
