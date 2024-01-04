@@ -26,6 +26,10 @@
     transition: transform 0.3s ease;
 }
 
+.flashcard.dragging {
+    opacity: 0.5;
+}
+
 .flashcard-inner {
     width: 100%;
     height: 90%;

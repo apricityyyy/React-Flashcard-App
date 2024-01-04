@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function Flashcard({ card, onEdit, onDelete, onSelect, isSelected }) {
+function Flashcard({ card, onEdit, onDelete, onSelect, isSelected, onDragStart, onDragOver }) {
     const [isFlipped, setIsFlipped] = useState(false);
 
     const flipCard = () => setIsFlipped(!isFlipped);
@@ -32,11 +32,18 @@ function Flashcard({ card, onEdit, onDelete, onSelect, isSelected }) {
     }
 
     return (
-        <div className={`flashcard ${isFlipped ? 'flipped' : ''}`} onClick={flipCard}>
-             <input
+        <div className={`flashcard ${isFlipped ? 'flipped' : ''}`}
+            onClick={flipCard}
+            draggable="true"
+            onDragStart={(e) => onDragStart(e, card.id)}
+            onDragOver={(e) => e.preventDefault()}
+            data-id={card.id}
+        >
+            <input
                 type="checkbox"
                 checked={isSelected}
-                onClick={(e) => {e.stopPropagation(); onSelect(card.id)}}
+                onClick={(e) => { e.stopPropagation(); }}
+                onChange={() => onSelect(card.id)}
             />
 
             <div className="flashcard-inner">
