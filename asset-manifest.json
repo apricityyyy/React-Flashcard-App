@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/react-flashcard-app/static/css/main.8413e218.css",
-    "main.js": "/react-flashcard-app/static/js/main.a9c43959.js",
+    "main.js": "/react-flashcard-app/static/js/main.f530ef88.js",
     "static/media/image1.jpeg": "/react-flashcard-app/static/media/image1.8818215bda30dc8056fe.jpeg",
     "static/media/image2.webp": "/react-flashcard-app/static/media/image2.6fcd85258b52d358348c.webp",
     "static/media/image3.webp": "/react-flashcard-app/static/media/image3.228fbafb635db4c7cf0b.webp",
     "static/media/page-not-found-img.webp": "/react-flashcard-app/static/media/page-not-found-img.29ff6e4af3dcfab9a508.webp",
     "index.html": "/react-flashcard-app/index.html",
     "main.8413e218.css.map": "/react-flashcard-app/static/css/main.8413e218.css.map",
-    "main.a9c43959.js.map": "/react-flashcard-app/static/js/main.a9c43959.js.map"
+    "main.f530ef88.js.map": "/react-flashcard-app/static/js/main.f530ef88.js.map"
   },
   "entrypoints": [
     "static/css/main.8413e218.css",
-    "static/js/main.a9c43959.js"
+    "static/js/main.f530ef88.js"
   ]
 }
